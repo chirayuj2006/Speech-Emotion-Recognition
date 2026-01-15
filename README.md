@@ -189,7 +189,7 @@ output_details = interpreter.get_output_details()
 ### Dedicated Model Input Preparation
 
 Feature tensors produced by the preprocessing pipeline are explicitly reshaped to match the expected model input format.
-```
+```python
 model_input = features[np.newaxis, ..., np.newaxis].astype(np.float32)
 ```
 
@@ -205,7 +205,7 @@ By making input shaping explicit, the inference stage becomes easier to debug an
 ### Structured Inference Invocation
 
 Inference execution is encapsulated as a clear, isolated step in the processing flow.
-```
+```python
 interpreter.set_tensor(input_index, model_input)
 interpreter.invoke()
 output = interpreter.get_tensor(output_index)
@@ -216,7 +216,7 @@ prediction smoothing,
 temporal aggregation and 
 confidence estimation
 
-##Dataset-Level Normalization
+## Dataset-Level Normalization
 
 Normalization statistics are computed offline using NumPy on the training dataset.
 These statistics consist of a global mean and standard deviation calculated over MFCC, chroma, and mel-spectrogram features.
